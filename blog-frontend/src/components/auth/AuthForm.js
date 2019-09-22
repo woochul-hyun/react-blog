@@ -44,10 +44,10 @@ const ButtonWithMarginTop = styled(CommonButton)`
   margin-top: 1rem;
 `;
 
-const AuthForm = () => {
+const AuthForm = ({ type }) => {
   return (
     <AuthFormBlock>
-      <h3>Sign In</h3>
+      <h3>{type}</h3>
       <form>
         <StyledInput autoComplete='username' name='username' placeholder='ID' />
         <StyledInput
@@ -56,12 +56,24 @@ const AuthForm = () => {
           placeholder='Password'
           type='password'
         />
+        {type === 'register' && (
+          <StyledInput
+            autoComplete='new-password'
+            name='passwordConfirm'
+            placeholder='confirm Password'
+            type='password'
+          />
+        )}
         <ButtonWithMarginTop cyan fullWidth>
-          Sign In
+          {type}
         </ButtonWithMarginTop>
       </form>
       <Footer>
-        <Link to='/register'>Sing Up</Link>
+        {type === 'login' ? (
+          <Link to='/register'>Sign Up</Link>
+        ) : (
+          <Link to='/login'>Sign In</Link>
+        )}
       </Footer>
     </AuthFormBlock>
   );
