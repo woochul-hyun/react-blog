@@ -44,17 +44,25 @@ const ButtonWithMarginTop = styled(CommonButton)`
   margin-top: 1rem;
 `;
 
-const AuthForm = ({ type }) => {
+const AuthForm = ({ type, form, onSubmit, onChange }) => {
   return (
     <AuthFormBlock>
       <h3>{type}</h3>
-      <form>
-        <StyledInput autoComplete='username' name='username' placeholder='ID' />
+      <form onSubmit={onSubmit}>
+        <StyledInput
+          autoComplete='username'
+          name='username'
+          placeholder='ID'
+          onChange={onChange}
+          value={form.username}
+        />
         <StyledInput
           autoComplete='new-password'
           name='password'
           placeholder='Password'
           type='password'
+          onChange={onChange}
+          value={form.password}
         />
         {type === 'register' && (
           <StyledInput
@@ -62,6 +70,8 @@ const AuthForm = ({ type }) => {
             name='passwordConfirm'
             placeholder='confirm Password'
             type='password'
+            onChange={onChange}
+            value={form.passwordConfirm}
           />
         )}
         <ButtonWithMarginTop cyan fullWidth>
