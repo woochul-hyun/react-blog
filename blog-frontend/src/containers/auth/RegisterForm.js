@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { changeField, initializeForm } from '../../modules/auth';
 import AuthForm from '../../components/auth/AuthForm';
 
-const LoginForm = ({ form, changeField, initializeForm }) => {
+const RegisterForm = ({ form, changeField, initializeForm }) => {
   const onChange = e => {
     const { value, name } = e.target;
     changeField({
-      form: 'login',
+      form: 'register',
       key: name,
       value
     });
@@ -18,12 +18,12 @@ const LoginForm = ({ form, changeField, initializeForm }) => {
   };
 
   useEffect(() => {
-    initializeForm('login');
+    initializeForm('register');
   }, [initializeForm]);
 
   return (
     <AuthForm
-      type='login'
+      type='register'
       form={form}
       onSubmit={onSubmit}
       onChange={onChange}
@@ -33,10 +33,10 @@ const LoginForm = ({ form, changeField, initializeForm }) => {
 
 export default connect(
   ({ auth }) => ({
-    form: auth.login
+    form: auth.register
   }),
   {
     changeField,
     initializeForm
   }
-)(LoginForm);
+)(RegisterForm);
